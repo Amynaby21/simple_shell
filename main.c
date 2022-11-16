@@ -22,7 +22,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 		if (nread == -1)
 			exit(1);
 
-	tokens = get_token(buffer, nread);
+	tokens = get_tokens(buffer, nread);
 
 	if (tokens[0] != NULL)
 	{

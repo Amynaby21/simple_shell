@@ -10,56 +10,27 @@
 
 int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
-	char *buffer = NULL; *cbuffer = NULL;
-	size_t n = 0;
+	char *buffer, **tokens;
 	ssize_t nread;
-	const char *delim = " \n";
-	int ntoken = 0;
-	char *token;
-	int i;
+	int value = 0;
 
 	while (1)
 	{
 		write(1, "$ ", 2);
-		nread = getline(&buffer, &n, stdin);
+		buffer = read_line(&nread);
 
 		if (nread == -1)
-			return (-1);
+			exit(1);
 
-	cbuffer = malloc(sizeof(char 0 * nread);
-	if (cbuffer == NULL)
+	tokens = get_token(buffer, nread);
+
+	if (tokens[0] != NULL)
 	{
-		return (-1);
-	}
-
-	strcpy(cbuffer, buffer);
-
-	token = strtok(buffer, delim);
-
-	while (token != NULL)
-	{
-		ntoken++;
-		token = strtok(NULL, delim);
-	}
-	ntoken++;
-
-	av = malloc(sizeof(char *) * ntoken);
-
-	token = strtok(cbuffer, delim);
-
-	for (i = 0; token != NULL; i++)
-	{
-		av[i] = malloc(sizeof(char) * strlen(token));
-		strcpy(av[i], token);
-
-		token = strtok(NULL, delim);
-	}
-	av[i] = NULL;
-
-	execve(av[0], av, NULL));
+		value = execute_cmd(tokens);
 	}
 	free(buffer);
-	free(cbuffer);
-	
-	return (0);
+	free(tokens);
+	}
+
+	return (value);
 }

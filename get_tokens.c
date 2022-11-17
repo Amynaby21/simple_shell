@@ -2,13 +2,13 @@
 
 /**
  * get_tokens - Gets the tokens
- * @line: The line to get tokenize
+ * @buffer: The line to get tokenize
  * @nread: The number of tokens to read
  *
  * Return: 0 or -1
  */
 
-char **get_tokens(char *line, ssize_t nread)
+char **get_tokens(char *buffer, ssize_t nread)
 {
 	char *cbuffer, *delim = " \n";
 	int ntoken = 0, i = 0;
@@ -16,7 +16,7 @@ char **get_tokens(char *line, ssize_t nread)
 
 	cbuffer = malloc(sizeof(char) * nread);
 
-	strcopy(cbuffer, buffer);
+	strcpy(cbuffer, buffer);
 
 	token = strtok(buffer, delim);
 	while (token != NULL)

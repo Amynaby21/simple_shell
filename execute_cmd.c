@@ -9,21 +9,13 @@
 
 int execute_cmd(char **tokens)
 {
-	pid_t id;
-	char *cmd;
-
-	cmd = _which(tokens[0]);
-
-	if (cmd == NULL)
-		return (-1);
-
-	id = fork();
+	pid_t id = fork();
 
 	if (id == 0)
 	{
-		execve(cmd, NULL, NULL);
-		perror(tokens[0]);
-		return (-1);
+		execve(tokens[0], tokens, NULL);
+		perror("./hsh");
+		exit(1);
 	}
 	else if (id > 0)
 	{
@@ -34,7 +26,7 @@ int execute_cmd(char **tokens)
 	}
 	else
 	{
-		return (-1);
+		perror("./hsh");
 	}
 	return (0);
 }

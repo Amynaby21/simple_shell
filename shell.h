@@ -11,5 +11,9 @@
 char** get_tokens(char *buffer, ssize_t nread);
 char *read_line(ssize_t *nread);
 int execute_cmd(char **tokens);
+char *_strcpy(char *dest, const char *src);
+int _strlen(const char *str);
+char *_strcat(char *dest, const char *src);
+char *_strncat(char *dest, const char *src, size_t n);
 
 #endif

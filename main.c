@@ -12,6 +12,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
 	char *buffer, **tokens;
 	ssize_t nread;
+	pid_t id;
 	
 	while (1)
 	{
@@ -25,7 +26,15 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 
 	if (tokens[0] != NULL)
 	{
-		execute_cmd(tokens);
+		id = fork();
+		
+		if (id == -1)
+			return (-1);
+		
+		if (id == 0)
+			execute_cmd(tokens);
+		if (id > 0)
+			wait(NULL);
 	}
 	free(buffer);
 	free(tokens);

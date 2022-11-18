@@ -15,14 +15,14 @@ void execute_cmd(char **tokens)
 	
 	if (arguments != 1)
 	{
-		write(1, "./shell: No such file or directory\n", 35);
+		write(1, "./hsh: No such file or directory\n", 35);
 	}
 	else
 	{
 		cmd = tokens[0];
 		if (execve(cmd, tokens, NULL) == -1)
 		{
-			perror("./shell");
+			perror("./hsh");
 		}
 	}
 }

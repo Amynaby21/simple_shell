@@ -9,9 +9,27 @@
 
 int execute_cmd(char **tokens)
 {
-	pid_t id = fork();
+	char *cmd = NULL;
+	int i = 0;
 
-	if (id == 0)
+	while (tokens[i] != NULL)
+		i++;
+	if (i != 1)
+	{
+		printf("./shell: No such file or directory\n");
+	}
+	else
+	{
+		cmd = tokens[0];
+		if (execve(cmd, tokens, NULL) == -1)
+		{
+			perror("./shell");
+		}
+	}
+	return (0);
+}
+
+	/*if (id == 0)
 	{
 		execve(tokens[0], tokens, NULL);
 		perror("./hsh");
@@ -27,6 +45,7 @@ int execute_cmd(char **tokens)
 	else
 	{
 		perror("./hsh");
-	}
-	return (0);
-}
+	}*/
+
+	/*return (0);*/
+/*}*/

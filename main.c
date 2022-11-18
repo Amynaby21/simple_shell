@@ -12,8 +12,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 {
 	char *buffer, **tokens;
 	ssize_t nread;
-	int value = 0;
-
+	
 	while (1)
 	{
 		write(1, "$ ", 2);
@@ -26,11 +25,11 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av)
 
 	if (tokens[0] != NULL)
 	{
-		value = execute_cmd(tokens);
+		execute_cmd(tokens);
 	}
 	free(buffer);
 	free(tokens);
 	}
 
-	return (value);
+	return (0);
 }

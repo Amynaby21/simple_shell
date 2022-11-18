@@ -3,20 +3,19 @@
 /**
  * execute_cmd - Executes the code
  * @tokens: A pointer to the tokens
- *
- * Return: 0 or -1
  */
 
-int execute_cmd(char **tokens)
+void execute_cmd(char **tokens)
 {
 	char *cmd = NULL;
-	int i = 0;
+	int arguments = 0;
 
-	while (tokens[i] != NULL)
-		i++;
-	if (i != 1)
+	while (tokens[arguments] != NULL)
+		arguments++;
+	
+	if (arguments != 1)
 	{
-		printf("./shell: No such file or directory\n");
+		write(1, "./shell: No such file or directory\n", 35);
 	}
 	else
 	{
@@ -26,7 +25,6 @@ int execute_cmd(char **tokens)
 			perror("./shell");
 		}
 	}
-	return (0);
 }
 
 	/*if (id == 0)

@@ -10,8 +10,8 @@
 char *read_line(ssize_t *nread)
 {
 	char *buffer = NULL;
-	size_t n = 0;
+	size_t bufferLen = 0;
 
-	*nread = getline(&buffer, &n, stdin);
+	*nread = getline(&buffer, &bufferLen, stdin);
 	return (buffer);
 }
